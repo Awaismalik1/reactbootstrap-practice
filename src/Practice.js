@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
-import { Stack, Button, Carousel, Form, Nav, Badge, Accordion, Card, CardImg, Container, Navbar } from 'react-bootstrap'
+import { Stack, Row, Col, Toast, Table, Button, Spinner, ProgressBar, Placeholder, Carousel, Form, Nav, Badge, Accordion, Card, CardImg, Container, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Practice() {
     const [color, setColor] = useState("red")
+    const [show, setShow] = useState(false);
+
     return (
         <div>
             <div>
                 <Navbar bg="dark" variant="dark">
                     <Container>
                         <Navbar.Brand href="#home">
+                            <Spinner animation="border" variant="primary" />
                             <img
                                 alt="logo"
                                 src="https://pbs.twimg.com/profile_images/1349694499497406467/21ofPu1U_400x400.jpg"
@@ -118,7 +121,12 @@ function Practice() {
                             <Form.Check type="checkbox" label="Check me out" />
                         </Form.Group>
                         <div >
-                            <Form.Check
+                            <div>
+                                <input type="radio" value="Male" name="gender" /> Male
+                                <input type="radio" value="Female" name="gender" /> Female
+
+                            </div>
+                            {/* <Form.Check
                                 inline
                                 value="Male"
                                 type="radio"
@@ -132,7 +140,7 @@ function Practice() {
                                 aria-label="radio 1"
                                 label="Female"
 
-                            />
+                            /> */}
                         </div>
                         <Button variant="dark" type="submit">
                             Submit
@@ -185,6 +193,73 @@ function Practice() {
                 </div>
 
             </div>
+
+            <Placeholder as="p" animation="glow">
+                <Placeholder xs={12} bg="warning" />
+            </Placeholder>
+
+            <ProgressBar>
+                <ProgressBar striped variant="success" label="HTML" animated now={20} key={1} />
+                <ProgressBar striped variant="warning" label="CSS" now={20} key={2} />
+                <ProgressBar striped variant="secondary" label="JavaScript" animated now={20} key={3} />
+                <ProgressBar striped variant="dark" label="React js" now={20} key={4} />
+                <ProgressBar striped variant="danger" label="Python" animated now={20} key={5} />
+            </ProgressBar>
+            <br />
+            <Table striped bordered hover variant="primary" size="lg">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td align="center" colSpan={2}>Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </Table>
+
+            <Row>
+                <Col xs={6}>
+                    <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+                        <Toast.Header>
+                            <img
+                                src="https://pbs.twimg.com/profile_images/1349694499497406467/21ofPu1U_400x400.jpg"
+                                className="rounded me-2"
+                                alt=""
+                                width="32px"
+                                height="32px"
+                            />
+                            <strong className="me-auto">Enigmatix</strong>
+                            <small>2 mins ago</small>
+                        </Toast.Header>
+                        <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+                    </Toast>
+                </Col>
+                <Col xs={6}>
+                    <Button onClick={() => setShow(true)}>Show Toast</Button>
+                </Col>
+            </Row>
+
+
+
 
         </div>
     )
